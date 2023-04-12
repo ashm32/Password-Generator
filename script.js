@@ -28,7 +28,7 @@ function getPasswordOptions() {
    const uppercase = prompt("Would you like to incorporate uppercase values? type yes or no"); 
    const numeric = prompt("Would you like to incorporate numeric values? type yes or no"); 
    const specialChar = prompt("Would you like to incorporate special characters ($@%&*, etc)? type yes or no"); 
-   //+ validate user input to check they've entered in the correct format
+   //validate user input to check they've entered in the correct format
 
   console.log("Password Length: " + passLength);
   console.log("Include lowercase? " + lowercase);
@@ -36,60 +36,49 @@ function getPasswordOptions() {
   console.log("Include numbers? " + numeric);
   console.log("Include special char? " + specialChar);
 
-//function can only return one value, so an array has been used to store all random values to be called collectively
-//get a random value and store it in generatedPass array
-  allRandom = [];
-  lowercaseRandom = lowerCasedCharacters[Math.floor(Math.random()*lowerCasedCharacters.length)];
-  upercaseRandom = upperCasedCharacters[Math.floor(Math.random()*upperCasedCharacters.length)];
-  numericRandom = numericCharacters[Math.floor(Math.random()*numericCharacters.length)];
-  specialCharRandom = specialCharacters[Math.floor(Math.random()*specialCharacters.length)];
-  allRandom.push(lowercaseRandom, upercaseRandom, numericRandom, specialCharRandom);
-  //console.log(allRandom);
-
-   // right now function hasn't been called, use to display final randomly generated password array
-   //Function for getting a random element from an array
+//Function for getting a random element from an array
 function getRandom(arr) {
-  return (allRandom); 
- }
-  
+  // i is the number of values generated for the password
  for (let i=0; i<passLength;){
-
-  if (lowercase=="yes"){
-    var randomLower = lowercaseRandom;
-console.log(randomLower);
+  if (lowercase=="yes" && i<passLength){
+    var randomLower = lowerCasedCharacters[Math.floor(Math.random()*lowerCasedCharacters.length)];;
+console.log("The random lower case letter generated is: " + randomLower);
   generatedPass.push(randomLower);
-  console.log(generatedPass.length);
+  console.log("There are " + generatedPass.length + "values in the password currently");
   i++;
   }
    
-  if (uppercase=="yes"){
-    var randomUpper = upercaseRandom;
-  console.log(randomUpper);
+  if (uppercase=="yes"&& i<passLength){
+    var randomUpper = upperCasedCharacters[Math.floor(Math.random()*upperCasedCharacters.length)];;
+  console.log("The random upper case letter generated is: " + randomUpper);
   generatedPass.push(randomUpper);
-  console.log(generatedPass.length);
+  console.log("There are " + generatedPass.length + "values in the password currently");
   i++;
   }
 
-  if (numeric=="yes"){
-    var randomNumeric = numericRandom;
- console.log(randomNumeric);
+  if (numeric=="yes"&& i<passLength){
+    var randomNumeric = numericCharacters[Math.floor(Math.random()*numericCharacters.length)];;
+ console.log("The random number generated is: " + randomNumeric);
   generatedPass.push(randomNumeric);
-  console.log(generatedPass.length);
+  console.log("There are " + generatedPass.length + "values in the password currently");
   i++;
   }
    
-  if (specialChar=="yes"){
-    var randomSpecialChar = specialCharRandom;
-  console.log(randomSpecialChar);
+  if (specialChar=="yes" && i<passLength){
+    var randomSpecialChar = specialCharacters[Math.floor(Math.random()*specialCharacters.length)];;
+  console.log("The random special character generated is: " + randomSpecialChar);
   generatedPass.push(randomSpecialChar);
-  console.log(generatedPass.length);
+  console.log("There are " + generatedPass.length + "values in the password currently");
   i++;
   }
-  console.log(i);
+  if (i==passLength){
+    console.log("Your current password is: " + generatedPass);
+    console.log("Current password length is: " + i);
+  }
 }
 }
-
-
+getRandom();
+}
 // Function to generate password with user input
 function generatePassword() {
   // check button is being clicked
