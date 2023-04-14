@@ -21,28 +21,26 @@ var upperCasedCharacters = [
   var specialChar= "";
   let generatedPass = [];
 
+//this function is used later to randomly shuffle the values in the generatedPass array
   function shuffle(generatedPass) {
     let currentIndex = generatedPass.length,  randomIndex;
-  
     // While there remain elements to shuffle.
     while (currentIndex != 0) {
-  
       // Pick a remaining element.
       randomIndex = Math.floor(Math.random() * currentIndex);
       currentIndex--;
-  
       // And swap it with the current element.
       [generatedPass[currentIndex], generatedPass[randomIndex]] = [
         generatedPass[randomIndex], generatedPass[currentIndex]];
     }
-  
     return generatedPass;
   }
+
 // Function to prompt user for password options
 function getPasswordOptions() {
-     //validate user input to check they've entered in the correct format
+  //validate user input to check they've entered a length which is 7<passLength<129
   var passLength = prompt("Enter required password length, must be between 8-128"); 
-   if (passLength < 8 || passLength > 128){
+   while (passLength < 8 || passLength > 128){
     alert("Password length must be between 8-128 characters");
     passLength = 0;
     passLength = prompt("Enter required password length, must be between 8-128"); 
@@ -96,8 +94,6 @@ console.log("The random lower case letter generated is: " + randomLower);
   }
   if (i==passLength){
     //check if the password has shuffled
-    console.log("Your current password is: " + (generatedPass));
-    console.log("Your shuffled password is: " + shuffle(generatedPass));
     console.log("Your final password is: " + shuffle(generatedPass.join("")));
     console.log("Current password length is: " + i);
   }
