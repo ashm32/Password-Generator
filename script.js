@@ -14,21 +14,44 @@ var upperCasedCharacters = [
   'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'];
 
   //create global variables for the user prompts
-  const passLength=0; 
-  const lowercase= "";
-  const uppercase= "";
-  const numeric= "";
-  const specialChar= "";
+  var passLength=0; 
+  var lowercase= "";
+  var uppercase= "";
+  var numeric= "";
+  var specialChar= "";
   let generatedPass = [];
 
+  function shuffle(generatedPass) {
+    let currentIndex = generatedPass.length,  randomIndex;
+  
+    // While there remain elements to shuffle.
+    while (currentIndex != 0) {
+  
+      // Pick a remaining element.
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex--;
+  
+      // And swap it with the current element.
+      [generatedPass[currentIndex], generatedPass[randomIndex]] = [
+        generatedPass[randomIndex], generatedPass[currentIndex]];
+    }
+  
+    return generatedPass;
+  }
 // Function to prompt user for password options
 function getPasswordOptions() {
-   const passLength = prompt("Enter required password length, must be between 8-128"); 
-   const lowercase = prompt("Would you like to incorporate lowercase values? type yes or no"); 
-   const uppercase = prompt("Would you like to incorporate uppercase values? type yes or no"); 
-   const numeric = prompt("Would you like to incorporate numeric values? type yes or no"); 
-   const specialChar = prompt("Would you like to incorporate special characters ($@%&*, etc)? type yes or no"); 
-   //validate user input to check they've entered in the correct format
+     //validate user input to check they've entered in the correct format
+  var passLength = prompt("Enter required password length, must be between 8-128"); 
+   if (passLength < 8 || passLength > 128){
+    alert("Password length must be between 8-128 characters");
+    passLength = 0;
+    passLength = prompt("Enter required password length, must be between 8-128"); 
+   }
+
+var lowercase = confirm("Would you like to incorporate lowercase values?"); 
+var uppercase = confirm("Would you like to incorporate uppercase values?"); 
+var numeric = confirm("Would you like to incorporate numeric values?"); 
+var specialChar = confirm("Would you like to incorporate special characters ($@%&*, etc)?"); 
 
   console.log("Password Length: " + passLength);
   console.log("Include lowercase? " + lowercase);
@@ -40,7 +63,7 @@ function getPasswordOptions() {
 function getRandom(arr) {
   // i is the number of values generated for the password
  for (let i=0; i<passLength;){
-  if (lowercase=="yes" && i<passLength){
+  if (lowercase== true && i<passLength){
     var randomLower = lowerCasedCharacters[Math.floor(Math.random()*lowerCasedCharacters.length)];;
 console.log("The random lower case letter generated is: " + randomLower);
   generatedPass.push(randomLower);
@@ -48,7 +71,7 @@ console.log("The random lower case letter generated is: " + randomLower);
   i++;
   }
    
-  if (uppercase=="yes"&& i<passLength){
+  if (uppercase== true && i<passLength){
     var randomUpper = upperCasedCharacters[Math.floor(Math.random()*upperCasedCharacters.length)];;
   console.log("The random upper case letter generated is: " + randomUpper);
   generatedPass.push(randomUpper);
@@ -56,7 +79,7 @@ console.log("The random lower case letter generated is: " + randomLower);
   i++;
   }
 
-  if (numeric=="yes"&& i<passLength){
+  if (numeric== true && i<passLength){
     var randomNumeric = numericCharacters[Math.floor(Math.random()*numericCharacters.length)];;
  console.log("The random number generated is: " + randomNumeric);
   generatedPass.push(randomNumeric);
@@ -64,7 +87,7 @@ console.log("The random lower case letter generated is: " + randomLower);
   i++;
   }
    
-  if (specialChar=="yes" && i<passLength){
+  if (specialChar== true && i<passLength){
     var randomSpecialChar = specialCharacters[Math.floor(Math.random()*specialCharacters.length)];;
   console.log("The random special character generated is: " + randomSpecialChar);
   generatedPass.push(randomSpecialChar);
@@ -72,7 +95,10 @@ console.log("The random lower case letter generated is: " + randomLower);
   i++;
   }
   if (i==passLength){
-    console.log("Your current password is: " + generatedPass);
+    //check if the password has shuffled
+    console.log("Your current password is: " + (generatedPass));
+    console.log("Your shuffled password is: " + shuffle(generatedPass));
+    console.log("Your final password is: " + shuffle(generatedPass.join("")));
     console.log("Current password length is: " + i);
   }
 }
@@ -81,10 +107,8 @@ getRandom();
 }
 // Function to generate password with user input
 function generatePassword() {
-  // check button is being clicked
-  console.log("Button clicked")
 // display the password by calling getRandom()
-return ("Generated password will be displayed here")
+return (shuffle(generatedPass.join("")))
 
 }
 
