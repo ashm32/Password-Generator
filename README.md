@@ -12,6 +12,8 @@ The code:
       * Special characters ($@%&*, etc)
 (Code validates each input and at least one character type has to be selected. Once prompts are answered then the password is generated and displayed once the button is clicked)
 
-LIVE PAGE SCREENSHOT:<img width="1680" alt="Screenshot 2023-04-16 at 15 37 12" src="https://user-images.githubusercontent.com/127209262/232320429-1e0ed0c6-f3dd-4298-9d89-020289ac94a9.png">
+LIVE PAGE SCREENSHOT:
+<img width="1680" alt="Screenshot 2023-04-16 at 15 38 33" src="https://user-images.githubusercontent.com/127209262/232320506-0261bf95-c97c-4133-b0d4-1fd7e23a5c6e.png">
+
 
 LIVE URL: https://ashm32.github.io/Password-Generator/ 
