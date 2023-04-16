@@ -61,6 +61,12 @@ var specialChar = confirm("Would you like to incorporate special characters ($@%
 function getRandom(arr) {
   // i is the number of values generated for the password
  for (let i=0; i<passLength;){
+  //if no data type is selected
+  if (lowercase==false && uppercase==false && specialChar==false && numeric==false){ 
+    console.log("At least one data type must be included")
+    i++;
+  }
+  //if a data type is selected add it to the generatedPass array
   if (lowercase== true && i<passLength){
     var randomLower = lowerCasedCharacters[Math.floor(Math.random()*lowerCasedCharacters.length)];;
 console.log("The random lower case letter generated is: " + randomLower);
@@ -92,18 +98,25 @@ console.log("The random lower case letter generated is: " + randomLower);
   console.log("There are " + generatedPass.length + "values in the password currently");
   i++;
   }
-  if (i==passLength){
+  //if the generatedPass array is empty (because no data types selected) then ask the user to select at least one
+  if (i==passLength && generatedPass==0){
+    alert("At least one data type must be included, try again")
+    getPasswordOptions();
+  }
+  // if the user has inputted the correct format then display the password
+  else if (i==passLength){
     //check if the password has shuffled
     console.log("Your final password is: " + shuffle(generatedPass.join("")));
     console.log("Current password length is: " + i);
   }
+
+  }
 }
-}
+// display the password by calling getRandom()
 getRandom();
 }
 // Function to generate password with user input
 function generatePassword() {
-// display the password by calling getRandom()
 return (shuffle(generatedPass.join("")))
 
 }
